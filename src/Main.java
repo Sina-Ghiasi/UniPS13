@@ -18,15 +18,16 @@ public class Main {
             employeeArrayList.add(employee);
         }
         Writer writer =(employee)->{
-        try{
-            Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "sina","sg159753");
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into employee (name,nationalID) values (?,?,?,?)");
-            preparedStatement.setString(1, employee.getName());
-            preparedStatement.setString(2, employee.getNationalId());
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            connection.close();
-        }catch (SQLException e){
+            try{
+                Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "sina","sg159753");
+                PreparedStatement preparedStatement = connection.prepareStatement("insert into employee (name,nationalID) values (?,?,?,?)");
+                preparedStatement.setString(1, employee.getName());
+                preparedStatement.setString(2, employee.getNationalId());
+                System.out.println("Done");
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                connection.close();
+            }catch (SQLException e){
             e.printStackTrace();
         }
         };
